@@ -39,7 +39,7 @@ def extract_graph(
     Extract semantic graph from token encodings.
 
     Args:
-        encodings: List of GSE-encoded tokens from encode_text()
+        encodings: List of encoded tokens from encode_text()
         source_text: Original text (for metadata)
         cassette: Extraction strategy - "semantic" (default) or "grammar"
             - "semantic": Knowledge-grounded using Wikipedia entity linking,

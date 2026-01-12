@@ -1,11 +1,11 @@
-# GSE Semantic Knowledge Graph
+# Semantic Knowledge Graph
 
-Extract knowledge graphs from text using **Grounded Semantic Encoding (GSE)** — interpretable, Wikipedia-grounded, and fast.
+Extract knowledge graphs from text using **Semantic Encoding** — interpretable, Wikipedia-grounded, and fast.
 
 ![Example Graph](graph_visualization.png)
 *Semantic graph extracted from text about cognition, storytelling, and ADHD. Node size = mention frequency, colors = EPA affect values.*
 
-## What Makes GSE Different
+## What Makes This Different
 
 | Approach | Limitation |
 |----------|------------|
@@ -13,7 +13,7 @@ Extract knowledge graphs from text using **Grounded Semantic Encoding (GSE)** �
 | **Embeddings** (TransE) | Opaque similarity scores. Can't explain *why* concepts relate |
 | **LLM Extraction** (GPT) | Expensive, slow, hallucinates, no grounding |
 
-**GSE approach:**
+**Semantic Encoding approach:**
 - **Position IS meaning** — 8192-dim sparse ternary vectors where each dimension = semantic primitive
 - **Wikipedia grounding** — Concepts linked to entities with multi-dimensional positions
 - **Interpretable** — Every relationship traceable: "Einstein → Physics via SCOPE anchor, → 20th century via TEMPORAL dimension"

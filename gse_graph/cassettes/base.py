@@ -33,7 +33,7 @@ class ExtractionCassette(ABC):
     Abstract base class for graph extraction cassettes.
 
     Each cassette implements a different approach to extracting
-    semantic graphs from GSE-encoded text.
+    semantic graphs from encoded text.
     """
 
     @property
@@ -53,7 +53,7 @@ class ExtractionCassette(ABC):
         Extract a semantic graph from encoded tokens.
 
         Args:
-            encodings: List of GSE-encoded tokens
+            encodings: List of encoded tokens
             source_text: Original text (for metadata)
             **kwargs: Cassette-specific options
 

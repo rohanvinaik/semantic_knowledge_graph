@@ -67,7 +67,7 @@ class GroundedConcept:
     positions: Dict[str, Any]        # Multi-dimensional positions
     anchors: List[Tuple[str, str, float]]  # (label, category, weight)
     source_tokens: List[TokenEncoding]  # Original token encodings
-    vector: np.ndarray               # Combined GSE vector
+    vector: np.ndarray               # Combined semantic vector
 
 
 class SemanticGroundingCassette(ExtractionCassette):
@@ -639,7 +639,7 @@ class SemanticGroundingCassette(ExtractionCassette):
         anchors = self.store.get_entity_anchors(profile.entity.id)
         anchor_list = [(a[1], a[2], a[3]) for a in anchors[:20]]
 
-        # Combine GSE vectors from source tokens
+        # Combine semantic vectors from source tokens
         vectors = [t.vector for t in cand["tokens"]]
         combined_vec = np.mean(vectors, axis=0) if vectors else np.zeros(8192)
 
@@ -783,7 +783,7 @@ class SemanticGroundingCassette(ExtractionCassette):
                 bank_name = bank.value if hasattr(bank, 'value') else str(bank)
                 bank_activations[bank_name] = bank_activations.get(bank_name, 0) + weight
 
-            # Merge with GSE bank activations from source tokens
+            # Merge with bank activations from source tokens
             for tok in concept.source_tokens:
                 for bank, val in tok.bank_activations.items():
                     bank_activations[bank] = max(bank_activations.get(bank, 0), val)

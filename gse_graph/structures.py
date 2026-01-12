@@ -4,7 +4,7 @@ import numpy as np
 
 @dataclass
 class TokenEncoding:
-    """Single token with its GSE encoding."""
+    """Single token with its semantic encoding."""
     text: str                           # Original text
     lemma: str                          # Normalized form
     vector: np.ndarray                  # 8192-dim sparse ternary

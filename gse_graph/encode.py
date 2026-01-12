@@ -1,5 +1,5 @@
 """
-GSE encoding wrapper.
+Semantic encoding wrapper.
 
 This module wraps semantic_probing to encode text into vectors with
 full bank activation and primitive decomposition.

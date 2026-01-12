@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**GSE Semantic Knowledge Graph** - A Python library for extracting knowledge graphs from text using Grounded Semantic Encoding (GSE). Unlike syntax-based extractors, this captures semantic intent and roles directly from vector space where "position IS meaning".
+**Semantic Knowledge Graph** - A Python library for extracting knowledge graphs from text using Semantic Encoding. Unlike syntax-based extractors, this captures semantic intent and roles directly from vector space where "position IS meaning".
 
 ## Architecture (v0.2.0 - Cassette System)
 
@@ -97,18 +97,13 @@ graph = resolve_entities(graph)
 output = graph.to_json()  # For 3d-force-graph visualization
 ```
 
-## Next Steps (from walkthrough)
-
-1. **Frontend**: Implement visualizer using `3d-force-graph` to render JSON output
-2. **Advanced Resolution**: Integrate `sparse-wiki-grounding` for global entity linking
-
 ## Related Projects
 
-- `semantic_probing` - Core GSE encoding library (`~/semantic_probing`)
+- `semantic_probing` - Core encoding library (`~/semantic_probing`)
 - `sparse-wiki-grounding` - Entity linking to Wikipedia (`~/sparse-wiki-grounding`)
   - Database: `~/sparse-wiki-grounding/data/wiki_grounding.db` (31MB, 10K entities)
   - Provides: EntityStore, SpreadingActivation, anchor layer
-- `relational-ai` - Higher-level cognitive architecture using GSE
+- `relational-ai` - Higher-level cognitive architecture using Semantic Encoding
 
 ## Cassette Usage
 

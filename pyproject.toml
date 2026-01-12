@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "semantic_knowledge_graph"
 version = "0.1.0"
-description = "Semantic knowledge graph extraction and 3D visualization using Grounded Semantic Encoding"
+description = "Semantic knowledge graph extraction and 3D visualization using Semantic Encoding"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

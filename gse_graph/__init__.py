@@ -1,8 +1,8 @@
 """
-GSE Semantic Knowledge Graph
+Semantic Knowledge Graph
 
 A Python library for extracting knowledge graphs from text using
-Grounded Semantic Encoding (GSE).
+Semantic Encoding.
 
 Two extraction strategies available via cassettes:
 - "semantic" (default): Knowledge-grounded using Wikipedia entity linking
