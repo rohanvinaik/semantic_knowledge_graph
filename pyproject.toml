@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "semantic_knowledge_graph"
+version = "0.1.0"
+description = "Semantic knowledge graph extraction and 3D visualization using Grounded Semantic Encoding"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "semantic-probing @ file:///Users/rohanvinaik/semantic_probing",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0", 
+    "scikit-learn>=1.3.0",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["gse_graph"]

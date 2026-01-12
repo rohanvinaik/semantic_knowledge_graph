@@ -1,0 +1,2237 @@
+{
+  "nodes": [
+    {
+      "id": "I",
+      "label": "i",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.006436434659090909,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.000244140625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 4.438920454545455e-05,
+        "SPATIAL": 0.00011097301136363636,
+        "LOGICAL": 0.0
+      },
+      "mentions": 44
+    },
+    {
+      "id": "think",
+      "label": "thought",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.142578125,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 5
+    },
+    {
+      "id": "Borges",
+      "label": "Borges",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.001953125,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.00048828125,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 2
+    },
+    {
+      "id": "reference",
+      "label": "reference",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "which",
+      "label": "which",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "appropriate",
+      "label": "appropriate",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.001953125,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "be",
+      "label": "is",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005910773026315789,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0008737664473684211,
+        "MENTAL": 5.139802631578947e-05,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 19
+    },
+    {
+      "id": "vibe",
+      "label": "vibe",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "decomposable",
+      "label": "decomposable",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0087890625,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "he",
+      "label": "He",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 4
+    },
+    {
+      "id": "figure",
+      "label": "figure",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.001953125,
+        "MENTAL": 0.0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "mind",
+      "label": "mind",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.427734375,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "grant",
+      "label": "granting",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 2
+    },
+    {
+      "id": "Prize",
+      "label": "Prize",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0029296875,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "tradition",
+      "label": "tradition",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.001953125,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.001953125,
+        "LOGICAL": 0.0029296875
+      },
+      "mentions": 1
+    },
+    {
+      "id": "they",
+      "label": "they",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 3
+    },
+    {
+      "id": "elegant",
+      "label": "Elegant",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0048828125,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "point",
+      "label": "point",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.001953125,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "jaunt",
+      "label": "jaunt",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "intriguing",
+      "label": "intriguing",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0029296875,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "relationship",
+      "label": "relationship",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.001953125,
+        "MENTAL": 0.00390625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "blindness",
+      "label": "blindness",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0029296875,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "lead",
+      "label": "led",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "sort",
+      "label": "sort",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.001953125,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "output",
+      "label": "output",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0029296875,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 2
+    },
+    {
+      "id": "career",
+      "label": "career",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.001953125,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "word",
+      "label": "word",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "wait",
+      "label": "wait",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "become",
+      "label": "become",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.001953125,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "teacher",
+      "label": "teacher",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "student",
+      "label": "students",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.001953125,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "story",
+      "label": "story",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 7
+    },
+    {
+      "id": "what",
+      "label": "What",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 2
+    },
+    {
+      "id": "example",
+      "label": "example",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.001953125,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "that",
+      "label": "that",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 4
+    },
+    {
+      "id": "exist",
+      "label": "exists",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0908203125,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.1103515625,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0498046875
+      },
+      "mentions": 1
+    },
+    {
+      "id": "imagination",
+      "label": "imagination",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.001953125,
+        "MENTAL": 0.0,
+        "ACTION": 0.001953125,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.001953125,
+        "LOGICAL": 0.0
+      },
+      "mentions": 2
+    },
+    {
+      "id": "instinct",
+      "label": "instinct",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.001953125,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "something",
+      "label": "something",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 4
+    },
+    {
+      "id": "creature",
+      "label": "creatures",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "narrative",
+      "label": "narratives",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.001953125,
+        "TEMPORAL": 0.001953125,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "novel",
+      "label": "Novels",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "reality",
+      "label": "realities",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "leave",
+      "label": "leave",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "make",
+      "label": "make",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "sense",
+      "label": "sense",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 3
+    },
+    {
+      "id": "fantastical",
+      "label": "fantastical",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.001953125,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.001953125,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "setting",
+      "label": "setting",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.001953125,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "message",
+      "label": "message",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0029296875,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "capture",
+      "label": "capture",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.001953125,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "idea",
+      "label": "idea",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "finger",
+      "label": "finger",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.001953125,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "medicate",
+      "label": "medicated",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.001953125,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "vyvanse",
+      "label": "vyvanse",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.001953125,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "feel",
+      "label": "feel",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.142578125,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 2
+    },
+    {
+      "id": "space",
+      "label": "space",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.001953125,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "present",
+      "label": "present",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.001953125,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "brain",
+      "label": "brain",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "complete",
+      "label": "complete",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "slip",
+      "label": "slip",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "situation",
+      "label": "situation",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.001953125,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "part",
+      "label": "part",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "month",
+      "label": "months",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "person",
+      "label": "person",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.001953125,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "different",
+      "label": "different",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.001953125,
+        "MENTAL": 0.0,
+        "ACTION": 0.001953125,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 2
+    },
+    {
+      "id": "able",
+      "label": "able",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "drug",
+      "label": "drugs",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "flow",
+      "label": "flow",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "grasp",
+      "label": "grasp",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "construct",
+      "label": "construct",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.001953125,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0029296875
+      },
+      "mentions": 1
+    },
+    {
+      "id": "theme",
+      "label": "theme",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "text",
+      "label": "text",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.0,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "difficult",
+      "label": "difficult",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0,
+        "EVALUATORS": 0.0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0.001953125,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0029296875
+      },
+      "mentions": 1
+    },
+    {
+      "id": "articulate",
+      "label": "articulate",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "color": "rgb(128,128,128)",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "MENTAL": 0.001953125,
+        "ACTION": 0.0,
+        "TEMPORAL": 0.0,
+        "SPATIAL": 0.0,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "I",
+      "target": "think",
+      "label": "co_occurs",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "I",
+      "target": "Borges",
+      "label": "\"",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "I",
+      "target": "be",
+      "label": "Borgesian",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "I",
+      "target": "reference",
+      "label": "\"",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "I",
+      "target": "which",
+      "label": "reference",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "I",
+      "target": "be",
+      "label": "the",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "I",
+      "target": "appropriate",
+      "label": "Borgia",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "think",
+      "target": "Borges",
+      "label": "\"",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "think",
+      "target": "be",
+      "label": "Borgesian",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "think",
+      "target": "reference",
+      "label": "\"",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "think",
+      "target": "which",
+      "label": "reference",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "think",
+      "target": "be",
+      "label": "the",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "think",
+      "target": "appropriate",
+      "label": "Borgia",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "Borges",
+      "target": "be",
+      "label": "\"",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "Borges",
+      "target": "reference",
+      "label": "be",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "Borges",
+      "target": "which",
+      "label": "to",
+      "type": "SPATIAL",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "Borges",
+      "target": "be",
+      "label": "Borgia",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "Borges",
+      "target": "appropriate",
+      "label": "family",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "be",
+      "target": "reference",
+      "label": "a",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "be",
+      "target": "which",
+      "label": "the",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "be",
+      "target": "appropriate",
+      "label": ",",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "reference",
+      "target": "which",
+      "label": "Borgia",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "reference",
+      "target": "be",
+      "label": ",",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "reference",
+      "target": "appropriate",
+      "label": "which",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "which",
+      "target": "be",
+      "label": "also",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "which",
+      "target": "appropriate",
+      "label": "have",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "be",
+      "target": "appropriate",
+      "label": "quite",
+      "type": "GENERIC",
+      "weight": 0.5,
+      "color": "rgb(100,100,100)",
+      "directed": false
+    },
+    {
+      "source": "decomposable",
+      "target": "I",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "decomposable",
+      "target": "reality",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "grant",
+      "target": "I",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "Prize",
+      "target": "I",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "they",
+      "target": "I",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "point",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "he",
+      "target": "point",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "jaunt",
+      "target": "point",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "relationship",
+      "target": "he",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "blindness",
+      "target": "he",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "he",
+      "target": "student",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "he",
+      "target": "story",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "he",
+      "target": "they",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "output",
+      "target": "student",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "output",
+      "target": "story",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "output",
+      "target": "they",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "student",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "story",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "they",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "student",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "story",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "they",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "example",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "that",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "example",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "that",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "story",
+      "target": "example",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "story",
+      "target": "that",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "imagination",
+      "label": "exists",
+      "type": "CAUSAL",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "imagination",
+      "label": "exists",
+      "type": "CAUSAL",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "imagination",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "that",
+      "target": "imagination",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "story",
+      "target": "imagination",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "instinct",
+      "target": "creature",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "instinct",
+      "target": "narrative",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "creature",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "narrative",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "they",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "they",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "they",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "story",
+      "target": "sense",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "story",
+      "target": "message",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "setting",
+      "target": "sense",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "setting",
+      "target": "message",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "story",
+      "target": "idea",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "story",
+      "target": "finger",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "that",
+      "target": "idea",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "that",
+      "target": "finger",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "idea",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "finger",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "idea",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "finger",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "idea",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "finger",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "vyvanse",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "be",
+      "target": "present",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "drug",
+      "target": "sense",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "sense",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "story",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "something",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "story",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "I",
+      "target": "something",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "be",
+      "target": "theme",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    },
+    {
+      "source": "be",
+      "target": "flow",
+      "label": "related_to",
+      "type": "GENERIC",
+      "weight": 1.0,
+      "color": "rgb(100,100,100)",
+      "directed": true
+    }
+  ],
+  "metadata": {
+    "source_length": 3679,
+    "num_sentences": 39,
+    "num_nodes": 74,
+    "num_edges": 91
+  }
+}

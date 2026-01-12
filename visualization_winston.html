@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSE Semantic Knowledge Graph - Patrick Winston & AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+        #container { width: 100vw; height: 100vh; }
+        #info-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 380px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+        #info-panel h1 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #7eb8ff;
+        }
+        #info-panel p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #a0a0a0;
+            margin-bottom: 8px;
+        }
+        .stat {
+            display: inline-block;
+            background: rgba(100, 100, 255, 0.15);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 12px;
+        }
+        #legend {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            z-index: 100;
+        }
+        #legend h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #7eb8ff;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+            font-size: 12px;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        #node-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 300px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            z-index: 100;
+            display: none;
+        }
+        #node-info h2 {
+            font-size: 16px;
+            color: #7eb8ff;
+            margin-bottom: 12px;
+        }
+        .bank-bar {
+            margin: 8px 0;
+        }
+        .bank-label {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        .bank-fill {
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #4a9eff, #a855f7);
+        }
+        #controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            z-index: 100;
+        }
+        #controls label {
+            font-size: 12px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        #controls input[type="range"] {
+            width: 150px;
+        }
+        .highlight { color: #7eb8ff; font-weight: bold; }
+    </style>
+    <script src="https://unpkg.com/3d-force-graph@1"></script>
+</head>
+<body>
+    <div id="container"></div>
+
+    <div id="info-panel">
+        <h1>GSE Semantic Knowledge Graph</h1>
+        <p>Visualizing semantic relationships from text about <span class="highlight">Patrick Winston</span>, 
+        AI pioneer at MIT known for his work on storytelling and knowledge representation.</p>
+        <div id="stats"></div>
+        <p style="margin-top: 12px; font-size: 11px; color: #666;">
+            🖱️ Drag to rotate | Scroll to zoom | Click nodes for details
+        </p>
+    </div>
+
+    <div id="legend">
+        <h3>Edge Types</h3>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #22c55e;"></div>
+            <span>Shared Anchors (semantic link)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff6b6b;"></div>
+            <span>CAUSAL (because, enables)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #4ecdc4;"></div>
+            <span>SPATIAL (location)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #6b7280;"></div>
+            <span>Co-occurrence</span>
+        </div>
+        <h3 style="margin-top: 15px;">Node Size</h3>
+        <p style="font-size: 11px; color: #888;">Larger = more mentions in text</p>
+    </div>
+
+    <div id="node-info">
+        <h2 id="node-label"></h2>
+        <p id="node-mentions" style="font-size: 12px; color: #888; margin-bottom: 15px;"></p>
+        <div id="node-banks"></div>
+    </div>
+
+    <div id="controls">
+        <label>Link Distance: <span id="dist-val">40</span></label>
+        <input type="range" id="link-dist" min="10" max="100" value="40">
+    </div>
+
+    <script>
+        // Graph data embedded directly
+        const graphData = {
+  "nodes": [
+    {
+      "id": "T6_Patrick_Winston",
+      "label": "Patrick Winston",
+      "banks": {
+        "MENTAL": 2.3,
+        "TEMPORAL": 0.4,
+        "SUBSTANTIVES": 0.1142578125,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0,
+        "ACTION": 0,
+        "SPATIAL": 0.220703125,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 2
+    },
+    {
+      "id": "Q_Storytelling",
+      "label": "Storytelling",
+      "banks": {
+        "MENTAL": 11.299999999999997,
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0,
+        "EVALUATORS": 0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.00390625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "Q_Human",
+      "label": "Human",
+      "banks": {
+        "MENTAL": 18.0,
+        "SUBSTANTIVES": 0.5517578125,
+        "QUANTITY": 0.0966796875,
+        "EVALUATORS": 0.28515625,
+        "ACTION": 0.662109375,
+        "TEMPORAL": 0.166015625,
+        "SPATIAL": 0.220703125,
+        "LOGICAL": 0.1494140625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "Q_Developed_country",
+      "label": "Developed country",
+      "banks": {
+        "MENTAL": 11.199999999999998,
+        "SUBSTANTIVES": 0.3330078125,
+        "QUANTITY": 0.0908203125,
+        "EVALUATORS": 0.28515625,
+        "ACTION": 0.44140625,
+        "TEMPORAL": 0.498046875,
+        "SPATIAL": 0.220703125,
+        "LOGICAL": 0.099609375
+      },
+      "mentions": 1
+    },
+    {
+      "id": "Q_Intelligence",
+      "label": "Intelligence",
+      "banks": {
+        "MENTAL": 14.799999999999994,
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0,
+        "EVALUATORS": 0,
+        "ACTION": 0.0009765625,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.00390625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "influence",
+      "label": "influenced",
+      "banks": {
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0,
+        "EVALUATORS": 0,
+        "MENTAL": 0.0009765625,
+        "ACTION": 0,
+        "TEMPORAL": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.001953125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "study",
+      "label": "studying",
+      "banks": {
+        "SUBSTANTIVES": 0.44140625,
+        "QUANTITY": 0.0908203125,
+        "EVALUATORS": 0.142578125,
+        "MENTAL": 0.5703125,
+        "ACTION": 0.5517578125,
+        "TEMPORAL": 0.33203125,
+        "SPATIAL": 0.3310546875,
+        "LOGICAL": 0.1494140625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "Q_Learning",
+      "label": "Learning",
+      "banks": {
+        "MENTAL": 9.7,
+        "TEMPORAL": 2.8,
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0,
+        "ACTION": 0.00390625,
+        "SPATIAL": 0,
+        "LOGICAL": 0
+      },
+      "mentions": 1
+    },
+    {
+      "id": "T6_Pioneers_in_Engineering",
+      "label": "Pioneers in Engineering",
+      "banks": {
+        "MENTAL": 1.3,
+        "TEMPORAL": 0.4,
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0,
+        "EVALUATORS": 0.001953125,
+        "ACTION": 0,
+        "SPATIAL": 0,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "Q_Termite",
+      "label": "Termite",
+      "banks": {
+        "MENTAL": 14.299999999999994,
+        "SPATIAL": 0.7,
+        "SUBSTANTIVES": 0.3310546875,
+        "QUANTITY": 0,
+        "EVALUATORS": 0,
+        "ACTION": 0.1103515625,
+        "TEMPORAL": 0,
+        "LOGICAL": 0.099609375
+      },
+      "mentions": 1
+    },
+    {
+      "id": "Q_Fundamentalism",
+      "label": "Fundamentalism",
+      "banks": {
+        "MENTAL": 4.6000000000000005,
+        "TEMPORAL": 5.2,
+        "SUBSTANTIVES": 0.0078125,
+        "QUANTITY": 0.0009765625,
+        "EVALUATORS": 0.0009765625,
+        "ACTION": 0.0009765625,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0009765625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "Q_Conflict_theories",
+      "label": "Conflict theories",
+      "banks": {
+        "MENTAL": 4.4,
+        "TEMPORAL": 3.5999999999999996,
+        "SUBSTANTIVES": 0.3359375,
+        "QUANTITY": 0,
+        "EVALUATORS": 0.142578125,
+        "ACTION": 0.3310546875,
+        "SPATIAL": 0,
+        "LOGICAL": 0.099609375
+      },
+      "mentions": 1
+    },
+    {
+      "id": "T6_Representations",
+      "label": "Representations",
+      "banks": {
+        "TEMPORAL": 0.4,
+        "MENTAL": 0.4,
+        "SUBSTANTIVES": 0.005859375,
+        "QUANTITY": 0,
+        "EVALUATORS": 0.0009765625,
+        "ACTION": 0.001953125,
+        "SPATIAL": 0.0009765625,
+        "LOGICAL": 0.0048828125
+      },
+      "mentions": 1
+    },
+    {
+      "id": "enable",
+      "label": "enables",
+      "banks": {
+        "SUBSTANTIVES": 0.220703125,
+        "QUANTITY": 0,
+        "EVALUATORS": 0.142578125,
+        "MENTAL": 0.427734375,
+        "ACTION": 0.44140625,
+        "TEMPORAL": 0,
+        "SPATIAL": 0,
+        "LOGICAL": 0.1494140625
+      },
+      "mentions": 1
+    },
+    {
+      "id": "work",
+      "label": "work",
+      "banks": {
+        "SUBSTANTIVES": 0.4443359375,
+        "QUANTITY": 0,
+        "EVALUATORS": 0.142578125,
+        "MENTAL": 0.712890625,
+        "ACTION": 0.5517578125,
+        "TEMPORAL": 0.166015625,
+        "SPATIAL": 0.3310546875,
+        "LOGICAL": 0.19921875
+      },
+      "mentions": 1
+    },
+    {
+      "id": "T6_Generations_(Journey_album)",
+      "label": "Generations (Journey album)",
+      "banks": {
+        "MENTAL": 1.9999999999999998,
+        "TEMPORAL": 0.8,
+        "SUBSTANTIVES": 0.0068359375,
+        "QUANTITY": 0,
+        "EVALUATORS": 0.001953125,
+        "ACTION": 0.00390625,
+        "SPATIAL": 0,
+        "LOGICAL": 0
+      },
+      "mentions": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "Q_Learning",
+      "target": "Q_Intelligence",
+      "label": "RelatedTo",
+      "type": "SPATIAL",
+      "weight": 0.8483999999999999
+    },
+    {
+      "source": "T6_Patrick_Winston",
+      "target": "Q_Developed_country",
+      "label": "shared:United States",
+      "type": "MENTAL",
+      "weight": 0.48999999999999994
+    },
+    {
+      "source": "T6_Patrick_Winston",
+      "target": "Q_Intelligence",
+      "label": "shared:Artificial in",
+      "type": "MENTAL",
+      "weight": 0.48999999999999994
+    },
+    {
+      "source": "T6_Patrick_Winston",
+      "target": "Q_Learning",
+      "label": "shared:Artificial in",
+      "type": "MENTAL",
+      "weight": 0.48999999999999994
+    },
+    {
+      "source": "Q_Human",
+      "target": "Q_Developed_country",
+      "label": "shared:Agriculture",
+      "type": "MENTAL",
+      "weight": 0.81
+    },
+    {
+      "source": "Q_Human",
+      "target": "Q_Intelligence",
+      "label": "shared:Language",
+      "type": "MENTAL",
+      "weight": 0.81
+    },
+    {
+      "source": "Q_Human",
+      "target": "Q_Learning",
+      "label": "shared:Evolution",
+      "type": "MENTAL",
+      "weight": 0.81
+    },
+    {
+      "source": "Q_Developed_country",
+      "target": "Q_Termite",
+      "label": "shared:Africa",
+      "type": "MENTAL",
+      "weight": 0.81
+    },
+    {
+      "source": "Q_Intelligence",
+      "target": "Q_Termite",
+      "label": "shared:Arthropod",
+      "type": "MENTAL",
+      "weight": 0.48999999999999994
+    },
+    {
+      "source": "Q_Learning",
+      "target": "Q_Termite",
+      "label": "shared:Bird",
+      "type": "MENTAL",
+      "weight": 0.48999999999999994
+    },
+    {
+      "source": "T6_Patrick_Winston",
+      "target": "T6_Pioneers_in_Engineering",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "T6_Patrick_Winston",
+      "target": "Q_Termite",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Storytelling",
+      "target": "Q_Human",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Storytelling",
+      "target": "Q_Fundamentalism",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Human",
+      "target": "Q_Fundamentalism",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Developed_country",
+      "target": "Q_Intelligence",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Developed_country",
+      "target": "Q_Conflict_theories",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Developed_country",
+      "target": "T6_Representations",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Developed_country",
+      "target": "enable",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Intelligence",
+      "target": "Q_Conflict_theories",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Intelligence",
+      "target": "T6_Representations",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Intelligence",
+      "target": "enable",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "influence",
+      "target": "study",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "influence",
+      "target": "Q_Learning",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "influence",
+      "target": "work",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "influence",
+      "target": "T6_Generations_(Journey_album)",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "study",
+      "target": "Q_Learning",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "study",
+      "target": "work",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "study",
+      "target": "T6_Generations_(Journey_album)",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Learning",
+      "target": "work",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Learning",
+      "target": "T6_Generations_(Journey_album)",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "T6_Pioneers_in_Engineering",
+      "target": "Q_Termite",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Conflict_theories",
+      "target": "T6_Representations",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "Q_Conflict_theories",
+      "target": "enable",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "T6_Representations",
+      "target": "enable",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    },
+    {
+      "source": "work",
+      "target": "T6_Generations_(Journey_album)",
+      "label": "co_occurs",
+      "type": "CONTEXTUAL",
+      "weight": 0.3
+    }
+  ],
+  "metadata": {
+    "source_length": 312,
+    "num_sentences": 4,
+    "num_nodes": 16,
+    "num_edges": 36
+  }
+};
+
+        // Color mappings
+        const edgeColors = {
+            'CAUSAL': '#ff6b6b',
+            'SPATIAL': '#4ecdc4',
+            'TEMPORAL': '#f7dc6f',
+            'MENTAL': '#a855f7',
+            'ACTION': '#22c55e',
+            'EVALUATIVE': '#f97316',
+            'GENERIC': '#6b7280',
+            'shared': '#22c55e'
+        };
+
+        // Compute node color based on dominant bank
+        function getNodeColor(banks) {
+            const colorMap = {
+                'MENTAL': '#a855f7',
+                'ACTION': '#22c55e',
+                'EVALUATORS': '#f97316',
+                'TEMPORAL': '#f7dc6f',
+                'SPATIAL': '#4ecdc4',
+                'LOGICAL': '#ff6b6b',
+                'SUBSTANTIVES': '#60a5fa'
+            };
+
+            if (!banks) return '#60a5fa';
+            
+            let maxBank = 'SUBSTANTIVES';
+            let maxVal = 0;
+            for (const [bank, val] of Object.entries(banks)) {
+                if (bank !== 'SUBSTANTIVES' && bank !== 'QUANTITY' && val > maxVal) {
+                    maxVal = val;
+                    maxBank = bank;
+                }
+            }
+            return colorMap[maxBank] || '#60a5fa';
+        }
+
+        // Process data
+        graphData.nodes.forEach(node => {
+            node.color = getNodeColor(node.banks);
+            node.val = Math.sqrt(node.mentions || 1) * 4 + 3;
+        });
+
+        graphData.edges = graphData.edges.map(edge => {
+            let color = edgeColors[edge.type] || edgeColors.GENERIC;
+            // Color shared anchor edges green
+            if (edge.label && edge.label.startsWith('shared:')) {
+                color = '#22c55e';
+            }
+            return { ...edge, color };
+        });
+
+        // Remove duplicate edges
+        const seenEdges = new Set();
+        graphData.edges = graphData.edges.filter(edge => {
+            const key = `${edge.source}-${edge.target}`;
+            const reverseKey = `${edge.target}-${edge.source}`;
+            if (seenEdges.has(key) || seenEdges.has(reverseKey)) return false;
+            seenEdges.add(key);
+            return true;
+        });
+
+        // Update stats
+        document.getElementById('stats').innerHTML = `
+            <span class="stat">${graphData.metadata.num_nodes} nodes</span>
+            <span class="stat">${graphData.edges.length} edges</span>
+            <span class="stat">${graphData.metadata.num_sentences} sentences</span>
+        `;
+
+        // Create 3D graph
+        const Graph = ForceGraph3D()
+            (document.getElementById('container'))
+            .graphData({
+                nodes: graphData.nodes,
+                links: graphData.edges.map(e => ({
+                    source: e.source,
+                    target: e.target,
+                    color: e.color,
+                    type: e.type,
+                    label: e.label
+                }))
+            })
+            .nodeLabel(node => `${node.label} (${node.mentions || 1} mentions)`)
+            .nodeColor(node => node.color)
+            .nodeVal(node => node.val)
+            .nodeOpacity(0.9)
+            .linkColor(link => link.color)
+            .linkWidth(1.5)
+            .linkOpacity(0.6)
+            .linkDirectionalArrowLength(3)
+            .linkDirectionalArrowRelPos(1)
+            .backgroundColor('#0a0a0a')
+            .onNodeClick(node => {
+                document.getElementById('node-info').style.display = 'block';
+                document.getElementById('node-label').textContent = node.label;
+                document.getElementById('node-mentions').textContent = `${node.mentions || 1} mentions in text`;
+
+                const banks = node.banks || {};
+                const banksHtml = Object.entries(banks)
+                    .filter(([k, v]) => k !== 'QUANTITY' && v > 0)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 6)
+                    .map(([bank, val]) => {
+                        const pct = Math.min(val * 500, 100);
+                        return `
+                            <div class="bank-bar">
+                                <div class="bank-label">${bank}</div>
+                                <div class="bank-fill" style="width: ${pct}%"></div>
+                            </div>
+                        `;
+                    }).join('');
+                document.getElementById('node-banks').innerHTML = banksHtml || '<p style="color:#666">No bank data</p>';
+
+                const distance = 80;
+                const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+                Graph.cameraPosition(
+                    { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
+                    node,
+                    1500
+                );
+            })
+            .onBackgroundClick(() => {
+                document.getElementById('node-info').style.display = 'none';
+            });
+
+        // Link distance control
+        const linkDistSlider = document.getElementById('link-dist');
+        linkDistSlider.addEventListener('input', (e) => {
+            document.getElementById('dist-val').textContent = e.target.value;
+            Graph.d3Force('link').distance(parseInt(e.target.value));
+            Graph.d3ReheatSimulation();
+        });
+
+        // Initial camera position
+        setTimeout(() => {
+            Graph.cameraPosition({ x: 200, y: 200, z: 200 });
+        }, 100);
+    </script>
+</body>
+</html>

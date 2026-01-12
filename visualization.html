@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSE Semantic Knowledge Graph - Borges Discussion</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+        #container { width: 100vw; height: 100vh; }
+        #info-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 350px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+        #info-panel h1 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #7eb8ff;
+        }
+        #info-panel p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #a0a0a0;
+            margin-bottom: 8px;
+        }
+        .stat {
+            display: inline-block;
+            background: rgba(100, 100, 255, 0.15);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 12px;
+        }
+        #legend {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            z-index: 100;
+        }
+        #legend h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #7eb8ff;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+            font-size: 12px;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        #node-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 300px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            z-index: 100;
+            display: none;
+        }
+        #node-info h2 {
+            font-size: 16px;
+            color: #7eb8ff;
+            margin-bottom: 12px;
+        }
+        .bank-bar {
+            margin: 8px 0;
+        }
+        .bank-label {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        .bank-fill {
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #4a9eff, #a855f7);
+        }
+        #controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            z-index: 100;
+        }
+        #controls label {
+            font-size: 12px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        #controls input[type="range"] {
+            width: 150px;
+        }
+    </style>
+    <script src="https://unpkg.com/3d-force-graph@1"></script>
+</head>
+<body>
+    <div id="container"></div>
+
+    <div id="info-panel">
+        <h1>GSE Semantic Knowledge Graph</h1>
+        <p>Visualizing semantic relationships extracted from a discussion about Borges, short stories, and ADHD medication.</p>
+        <div id="stats"></div>
+        <p style="margin-top: 12px; font-size: 11px; color: #666;">
+            Drag to rotate | Scroll to zoom | Click nodes for details
+        </p>
+    </div>
+
+    <div id="legend">
+        <h3>Edge Types</h3>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff6b6b;"></div>
+            <span>CAUSAL (because, therefore)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #4ecdc4;"></div>
+            <span>SPATIAL (location, position)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #95a5a6;"></div>
+            <span>GENERIC (co-occurrence)</span>
+        </div>
+        <h3 style="margin-top: 15px;">Node Size</h3>
+        <p style="font-size: 11px; color: #888;">Larger = more mentions in text</p>
+    </div>
+
+    <div id="node-info">
+        <h2 id="node-label"></h2>
+        <p id="node-mentions" style="font-size: 12px; color: #888; margin-bottom: 15px;"></p>
+        <div id="node-banks"></div>
+    </div>
+
+    <div id="controls">
+        <label>Link Distance: <span id="dist-val">30</span></label>
+        <input type="range" id="link-dist" min="10" max="100" value="30">
+    </div>
+
+    <script>
+        // Graph data embedded directly
+        const graphData = {
+  "nodes": [
+    {"id": "I", "label": "i", "banks": {"SUBSTANTIVES": 0.006436434659090909, "QUANTITY": 0.0, "EVALUATORS": 0.000244140625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 4.438920454545455e-05, "SPATIAL": 0.00011097301136363636, "LOGICAL": 0.0}, "mentions": 44},
+    {"id": "think", "label": "thought", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.142578125, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 5},
+    {"id": "Borges", "label": "Borges", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.001953125, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.00048828125, "LOGICAL": 0.0009765625}, "mentions": 2},
+    {"id": "reference", "label": "reference", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.001953125}, "mentions": 1},
+    {"id": "which", "label": "which", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "appropriate", "label": "appropriate", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.001953125, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "be", "label": "is", "banks": {"SUBSTANTIVES": 0.005910773026315789, "QUANTITY": 0.0, "EVALUATORS": 0.0008737664473684211, "MENTAL": 5.139802631578947e-05, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 19},
+    {"id": "vibe", "label": "vibe", "banks": {"SUBSTANTIVES": 0.0078125, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "decomposable", "label": "decomposable", "banks": {"SUBSTANTIVES": 0.0087890625, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "he", "label": "He", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 4},
+    {"id": "figure", "label": "figure", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.001953125, "MENTAL": 0.0, "ACTION": 0.0009765625, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "mind", "label": "mind", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.427734375, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "grant", "label": "granting", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 2},
+    {"id": "Prize", "label": "Prize", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0029296875, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "tradition", "label": "tradition", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.001953125, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.001953125, "LOGICAL": 0.0029296875}, "mentions": 1},
+    {"id": "they", "label": "they", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 3},
+    {"id": "elegant", "label": "Elegant", "banks": {"SUBSTANTIVES": 0.0048828125, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.001953125}, "mentions": 1},
+    {"id": "point", "label": "point", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.001953125, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "jaunt", "label": "jaunt", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "intriguing", "label": "intriguing", "banks": {"SUBSTANTIVES": 0.0078125, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0029296875, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "relationship", "label": "relationship", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.001953125, "MENTAL": 0.00390625, "ACTION": 0.0009765625, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "blindness", "label": "blindness", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0029296875, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "lead", "label": "led", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "sort", "label": "sort", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.001953125, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "output", "label": "output", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0029296875, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 2},
+    {"id": "career", "label": "career", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.001953125, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "word", "label": "word", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "wait", "label": "wait", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "become", "label": "become", "banks": {"SUBSTANTIVES": 0.0078125, "QUANTITY": 0.001953125, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "teacher", "label": "teacher", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.001953125}, "mentions": 1},
+    {"id": "student", "label": "students", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.001953125, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.001953125}, "mentions": 1},
+    {"id": "story", "label": "story", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 7},
+    {"id": "what", "label": "What", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 2},
+    {"id": "example", "label": "example", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.001953125, "ACTION": 0.0009765625, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "that", "label": "that", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 4},
+    {"id": "exist", "label": "exists", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0908203125, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.1103515625, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0498046875}, "mentions": 1},
+    {"id": "imagination", "label": "imagination", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.001953125, "MENTAL": 0.0, "ACTION": 0.001953125, "TEMPORAL": 0.0009765625, "SPATIAL": 0.001953125, "LOGICAL": 0.0}, "mentions": 2},
+    {"id": "instinct", "label": "instinct", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0009765625, "TEMPORAL": 0.001953125, "SPATIAL": 0.0009765625, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "something", "label": "something", "banks": {"SUBSTANTIVES": 0.0078125, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0009765625}, "mentions": 4},
+    {"id": "creature", "label": "creatures", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "narrative", "label": "narratives", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.001953125, "TEMPORAL": 0.001953125, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "novel", "label": "Novels", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "reality", "label": "realities", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "leave", "label": "leave", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "make", "label": "make", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "sense", "label": "sense", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 3},
+    {"id": "fantastical", "label": "fantastical", "banks": {"SUBSTANTIVES": 0.0078125, "QUANTITY": 0.001953125, "EVALUATORS": 0.0009765625, "MENTAL": 0.001953125, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "setting", "label": "setting", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0009765625, "TEMPORAL": 0.001953125, "SPATIAL": 0.0, "LOGICAL": 0.001953125}, "mentions": 1},
+    {"id": "message", "label": "message", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0029296875, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "capture", "label": "capture", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.001953125, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "idea", "label": "idea", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "finger", "label": "finger", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.001953125, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "medicate", "label": "medicated", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.001953125, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "vyvanse", "label": "vyvanse", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.001953125, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "feel", "label": "feel", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.142578125, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 2},
+    {"id": "space", "label": "space", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.001953125, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "present", "label": "present", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.001953125, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "brain", "label": "brain", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "complete", "label": "complete", "banks": {"SUBSTANTIVES": 0.0078125, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "slip", "label": "slip", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "situation", "label": "situation", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0009765625, "TEMPORAL": 0.0, "SPATIAL": 0.001953125, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "part", "label": "part", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0009765625, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "month", "label": "months", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "person", "label": "person", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.001953125, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "different", "label": "different", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.001953125, "MENTAL": 0.0, "ACTION": 0.001953125, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0009765625}, "mentions": 2},
+    {"id": "able", "label": "able", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "drug", "label": "drugs", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0009765625}, "mentions": 1},
+    {"id": "flow", "label": "flow", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "grasp", "label": "grasp", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0009765625, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "construct", "label": "construct", "banks": {"SUBSTANTIVES": 0.0068359375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.001953125, "ACTION": 0.0009765625, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0029296875}, "mentions": 1},
+    {"id": "theme", "label": "theme", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0009765625, "TEMPORAL": 0.0009765625, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "text", "label": "text", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0009765625, "MENTAL": 0.0, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.0}, "mentions": 1},
+    {"id": "difficult", "label": "difficult", "banks": {"SUBSTANTIVES": 0.005859375, "QUANTITY": 0.0, "EVALUATORS": 0.0, "MENTAL": 0.0009765625, "ACTION": 0.001953125, "TEMPORAL": 0.0, "SPATIAL": 0.0009765625, "LOGICAL": 0.0029296875}, "mentions": 1},
+    {"id": "articulate", "label": "articulate", "banks": {"SUBSTANTIVES": 0.0078125, "QUANTITY": 0.0009765625, "EVALUATORS": 0.0009765625, "MENTAL": 0.001953125, "ACTION": 0.0, "TEMPORAL": 0.0, "SPATIAL": 0.0, "LOGICAL": 0.001953125}, "mentions": 1}
+  ],
+  "edges": [
+    {"source": "I", "target": "think", "label": "co_occurs", "type": "GENERIC", "weight": 0.5},
+    {"source": "I", "target": "Borges", "label": "\"", "type": "GENERIC", "weight": 0.5},
+    {"source": "I", "target": "be", "label": "Borgesian", "type": "GENERIC", "weight": 0.5},
+    {"source": "I", "target": "reference", "label": "\"", "type": "GENERIC", "weight": 0.5},
+    {"source": "I", "target": "which", "label": "reference", "type": "GENERIC", "weight": 0.5},
+    {"source": "I", "target": "appropriate", "label": "Borgia", "type": "GENERIC", "weight": 0.5},
+    {"source": "think", "target": "Borges", "label": "\"", "type": "GENERIC", "weight": 0.5},
+    {"source": "think", "target": "be", "label": "Borgesian", "type": "GENERIC", "weight": 0.5},
+    {"source": "think", "target": "reference", "label": "\"", "type": "GENERIC", "weight": 0.5},
+    {"source": "think", "target": "which", "label": "reference", "type": "GENERIC", "weight": 0.5},
+    {"source": "think", "target": "appropriate", "label": "Borgia", "type": "GENERIC", "weight": 0.5},
+    {"source": "Borges", "target": "be", "label": "\"", "type": "GENERIC", "weight": 0.5},
+    {"source": "Borges", "target": "reference", "label": "be", "type": "GENERIC", "weight": 0.5},
+    {"source": "Borges", "target": "which", "label": "to", "type": "SPATIAL", "weight": 0.5},
+    {"source": "Borges", "target": "be", "label": "Borgia", "type": "GENERIC", "weight": 0.5},
+    {"source": "Borges", "target": "appropriate", "label": "family", "type": "GENERIC", "weight": 0.5},
+    {"source": "be", "target": "reference", "label": "a", "type": "GENERIC", "weight": 0.5},
+    {"source": "be", "target": "which", "label": "the", "type": "GENERIC", "weight": 0.5},
+    {"source": "be", "target": "appropriate", "label": ",", "type": "GENERIC", "weight": 0.5},
+    {"source": "reference", "target": "which", "label": "Borgia", "type": "GENERIC", "weight": 0.5},
+    {"source": "reference", "target": "be", "label": ",", "type": "GENERIC", "weight": 0.5},
+    {"source": "reference", "target": "appropriate", "label": "which", "type": "GENERIC", "weight": 0.5},
+    {"source": "which", "target": "be", "label": "also", "type": "GENERIC", "weight": 0.5},
+    {"source": "which", "target": "appropriate", "label": "have", "type": "GENERIC", "weight": 0.5},
+    {"source": "be", "target": "appropriate", "label": "quite", "type": "GENERIC", "weight": 0.5},
+    {"source": "decomposable", "target": "I", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "decomposable", "target": "reality", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "grant", "target": "I", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "Prize", "target": "I", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "they", "target": "I", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "point", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "he", "target": "point", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "jaunt", "target": "point", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "relationship", "target": "he", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "blindness", "target": "he", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "he", "target": "student", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "he", "target": "story", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "he", "target": "they", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "output", "target": "student", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "output", "target": "story", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "output", "target": "they", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "student", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "story", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "they", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "example", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "that", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "story", "target": "example", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "story", "target": "that", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "imagination", "label": "exists", "type": "CAUSAL", "weight": 1.0},
+    {"source": "I", "target": "imagination", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "that", "target": "imagination", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "story", "target": "imagination", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "instinct", "target": "creature", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "instinct", "target": "narrative", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "creature", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "narrative", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "story", "target": "sense", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "story", "target": "message", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "setting", "target": "sense", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "setting", "target": "message", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "story", "target": "idea", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "story", "target": "finger", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "that", "target": "idea", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "that", "target": "finger", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "idea", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "finger", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "vyvanse", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "be", "target": "present", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "drug", "target": "sense", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "sense", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "story", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "I", "target": "something", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "be", "target": "theme", "label": "related_to", "type": "GENERIC", "weight": 1.0},
+    {"source": "be", "target": "flow", "label": "related_to", "type": "GENERIC", "weight": 1.0}
+  ],
+  "metadata": {"source_length": 3679, "num_sentences": 39, "num_nodes": 74, "num_edges": 91}
+};
+
+        // Color mappings
+        const edgeColors = {
+            'CAUSAL': '#ff6b6b',
+            'SPATIAL': '#4ecdc4',
+            'TEMPORAL': '#f7dc6f',
+            'MENTAL': '#a855f7',
+            'ACTION': '#22c55e',
+            'EVALUATIVE': '#f97316',
+            'GENERIC': '#6b7280'
+        };
+
+        // Compute node color based on dominant bank
+        function getNodeColor(banks) {
+            const colorMap = {
+                'MENTAL': '#a855f7',
+                'ACTION': '#22c55e',
+                'EVALUATORS': '#f97316',
+                'TEMPORAL': '#f7dc6f',
+                'SPATIAL': '#4ecdc4',
+                'LOGICAL': '#ff6b6b',
+                'SUBSTANTIVES': '#60a5fa'
+            };
+
+            let maxBank = 'SUBSTANTIVES';
+            let maxVal = 0;
+            for (const [bank, val] of Object.entries(banks)) {
+                if (bank !== 'SUBSTANTIVES' && bank !== 'QUANTITY' && val > maxVal) {
+                    maxVal = val;
+                    maxBank = bank;
+                }
+            }
+            return colorMap[maxBank] || '#60a5fa';
+        }
+
+        // Process data
+        graphData.nodes.forEach(node => {
+            node.color = getNodeColor(node.banks);
+            node.val = Math.sqrt(node.mentions) * 3 + 2;  // Node size based on mentions
+        });
+
+        graphData.edges = graphData.edges.map(edge => ({
+            ...edge,
+            color: edgeColors[edge.type] || edgeColors.GENERIC
+        }));
+
+        // Remove duplicate edges (keep first occurrence)
+        const seenEdges = new Set();
+        graphData.edges = graphData.edges.filter(edge => {
+            const key = `${edge.source}-${edge.target}`;
+            const reverseKey = `${edge.target}-${edge.source}`;
+            if (seenEdges.has(key) || seenEdges.has(reverseKey)) return false;
+            seenEdges.add(key);
+            return true;
+        });
+
+        // Update stats
+        document.getElementById('stats').innerHTML = `
+            <span class="stat">${graphData.metadata.num_nodes} nodes</span>
+            <span class="stat">${graphData.edges.length} edges</span>
+            <span class="stat">${graphData.metadata.num_sentences} sentences</span>
+        `;
+
+        // Create 3D graph
+        const Graph = ForceGraph3D()
+            (document.getElementById('container'))
+            .graphData({
+                nodes: graphData.nodes,
+                links: graphData.edges.map(e => ({
+                    source: e.source,
+                    target: e.target,
+                    color: e.color,
+                    type: e.type,
+                    label: e.label
+                }))
+            })
+            .nodeLabel(node => `${node.label} (${node.mentions} mentions)`)
+            .nodeColor(node => node.color)
+            .nodeVal(node => node.val)
+            .nodeOpacity(0.9)
+            .linkColor(link => link.color)
+            .linkWidth(1.5)
+            .linkOpacity(0.6)
+            .linkDirectionalArrowLength(3)
+            .linkDirectionalArrowRelPos(1)
+            .backgroundColor('#0a0a0a')
+            .onNodeClick(node => {
+                // Show node info panel
+                document.getElementById('node-info').style.display = 'block';
+                document.getElementById('node-label').textContent = node.label;
+                document.getElementById('node-mentions').textContent = `${node.mentions} mentions in text`;
+
+                // Build bank bars
+                const banksHtml = Object.entries(node.banks)
+                    .filter(([k, v]) => k !== 'QUANTITY')
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([bank, val]) => {
+                        const pct = Math.min(val * 500, 100);  // Scale for visibility
+                        return `
+                            <div class="bank-bar">
+                                <div class="bank-label">${bank}</div>
+                                <div class="bank-fill" style="width: ${pct}%"></div>
+                            </div>
+                        `;
+                    }).join('');
+                document.getElementById('node-banks').innerHTML = banksHtml;
+
+                // Focus camera
+                const distance = 80;
+                const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+                Graph.cameraPosition(
+                    { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
+                    node,
+                    1500
+                );
+            })
+            .onBackgroundClick(() => {
+                document.getElementById('node-info').style.display = 'none';
+            });
+
+        // Link distance control
+        const linkDistSlider = document.getElementById('link-dist');
+        linkDistSlider.addEventListener('input', (e) => {
+            document.getElementById('dist-val').textContent = e.target.value;
+            Graph.d3Force('link').distance(parseInt(e.target.value));
+            Graph.d3ReheatSimulation();
+        });
+
+        // Initial camera position
+        setTimeout(() => {
+            Graph.cameraPosition({ x: 200, y: 200, z: 200 });
+        }, 100);
+    </script>
+</body>
+</html>
